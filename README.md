@@ -17,9 +17,11 @@ SV - Sales Velocity (numeric)
 OS - Opportunity Size (numeric)
 
 CRS - Client Revenue Size (string)
+
   *Denotes the type of Client Revenue Size that each of these leads deals with.  Are of 3 types-
     100K to 250K
     250K to 500K
     500K to 1M
 Status - Whether the lead was converted or not (string) 
+
   *Has two levels - 'Won' and 'Loss'
