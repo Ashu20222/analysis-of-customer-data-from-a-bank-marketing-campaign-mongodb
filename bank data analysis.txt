@@ -1,0 +1,84 @@
+1. Find the number of customers
+    -who are aged 40 and above
+    -married 
+    -and the campaign outcome was successful for them
+ 
+> db.bank.find({$and :[{'age':{$gte:'40'}},{'marital':'married'},{'outcome':'success'}]}).count()
+ 
+32
+
+
+2. Find the median age for the given list of customers?
+
+> db.bank.find().count()
+825
+> db.bank.find().sort({'age':1}).skip(422).limit(1).pretty()
+{
+        "_id" : ObjectId("6396aff3ba9ee0a783270369"),
+        "age" : "40",
+        "marital" : "married",
+        "balance" : "2133",
+        "contact" : "cellular",
+        "duration" : "377",
+        "outcome" : "failure",
+        "date" : "06-Apr"
+}
+
+3. Find the number of customers who were contacted in the month of February ('Feb')?
+
+> db.bank.find({'date': {$regex:/\-Feb/}}).count()
+111
+
+4. For all the customers who are
+    -either single or divorced
+    -and either contacted through cellular or telephone
+    -find the highest balance ?
+
+> db.bank.find({$and:[{'contact': {$in:['cellular','telephone']}},{'marital':{$in:['single','divorced']}}]}).sort({'balance':-1}).limit(1).pretty()
+{
+        "_id" : ObjectId("63995917ba9ee0a7832706b7"),
+        "age" : 53,
+        "marital" : "divorced",
+        "balance" : 8112,
+        "contact" : "cellular",
+        "duration" : 75,
+        "poutcome" : "failure",
+        "Date" : "15-Apr"
+}
+
+5. find all custoomers 
+    -who are age greater than eqal to 40
+    -who has balance > 6000
+
+> db.bank.find({$and:[{'age': {$gte: 40}},{'balance':{$gte:6000}}]}).count()
+9
+
+6. lowest balance
+
+> db.bank.find().sort({balance:1}).limit(1).pretty()
+{
+        "_id" : ObjectId("63995917ba9ee0a7832707dd"),
+        "age" : 45,
+        "marital" : "married",
+        "balance" : -1621,
+        "contact" : "cellular",
+        "duration" : 8,
+        "poutcome" : "failure",
+        "Date" : "15-May"
+}
+
+
+
+7. highest balance
+
+> db.bank.find().sort({balance:-1}).limit(1).pretty()
+{
+        "_id" : ObjectId("63995917ba9ee0a783270598"),
+        "age" : 33,
+        "marital" : "married",
+        "balance" : 17455,
+        "contact" : "cellular",
+        "duration" : 168,
+        "poutcome" : "failure",
+        "Date" : "18-Nov"
+}
