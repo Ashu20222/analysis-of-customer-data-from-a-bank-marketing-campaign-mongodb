@@ -1,4 +1,4 @@
-# analysis-of-customer data from a bank marketing campaign-mongodb
+# Analysis-of-customer data from a bank marketing campaign-mongodb
 
 The fields in this dataset are as follows
 
